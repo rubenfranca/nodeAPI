@@ -9,7 +9,9 @@
   "author": "Rúben França",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "mongoose": "^5.6.0",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
