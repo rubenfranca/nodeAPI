@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const expressValidator = require('express-validator');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
