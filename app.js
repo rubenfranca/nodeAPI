@@ -27,5 +27,13 @@ app.use(cookieParser());
 app.use('/', postRoutes);
 app.use('/', authRoutes);
 
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+        res.status(401).json({
+            error: 'Unauthorized!'
+        });
+    }
+})
+
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Listening on port: ${port}`));
