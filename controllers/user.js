@@ -40,7 +40,7 @@ exports.getUser = (req, res) => {
   return res.json(req.profile);
 };
 
-exports.updateUser = (req, res) => {
+exports.updateUser = (req, res, next) => {
   let user = req.profile;
   user = _.extend(user, req.body); // extend - mutate the source object
   user.updated = Date.now();
@@ -52,5 +52,16 @@ exports.updateUser = (req, res) => {
     user.hashed_password = undefined;
     user.salt = undefined;
     res.json({ user });
+  });
+};
+
+exports.deleteUser = (req, res, next) => {
+  let user = req.profile;
+  user.remove((err, user) => {
+    if (err) return res.status(400).json({
+      error: err,
+    });
+
+    res.json({ message: 'User deleted successfully' });
   });
 };
